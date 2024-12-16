@@ -44,7 +44,10 @@ func main() {
 
 	// Prompt for the batch name
 	fmt.Print("Enter the batch name: ")
-	fmt.Scanln(&batchName)
+	// Using bufio.Reader to read the entire line including spaces
+	reader := bufio.NewReader(os.Stdin)
+	batchName, _ = reader.ReadString('\n')
+	batchName = strings.TrimSpace(batchName) // Remove any trailing newline or spaces
 
 	// Prompt for the current date or an optional selected date
 	var selectedDate string
@@ -143,3 +146,4 @@ func main() {
 		fmt.Println("\nNo absentees today!")
 	}
 }
+
